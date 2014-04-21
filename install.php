@@ -1,46 +1,38 @@
 <?php
-
-    if(isset($_POST['weiter'])) {
-        
-        if(file_exists("config.php")) {
+    if(isset($_POST['continue'])) {
+        //Open/Create file.
+        $datei = fopen("connect.php", "w+");
             
-            //Wenn die Datei schon existiert, soll sie erst gelöscht werden um ungewollte Verluste zu vermeiden
-            echo "Die Datei config.php muss erst gel&ouml;scht werden um die Zugangsdaten zu speichern!";
-        } else {
-
-            //Datei erstellen
-            $datei = fopen("config.php", "w+");
-            
-            //Werte in Datei schreiben und mit '%%' trennen (beim auslesen einfach bei '%%' splitten)
-            $content = '<?php'."\n";
-            $content = $content.'  $db_host = "'.$_POST['db_host'].'";'."\n";
-            $content = $content.'  $db_name = "'.$_POST['db_name'].'";'."\n";
-            $content = $content.'  $db_user = "'.$_POST['db_user'].'";'."\n";
-            $content = $content.'  $db_pass = "'.$_POST['db_pass'].'";'."\n";
-            $content = $content.'?>';
-            fwrite($datei, $content);
-            fclose($datei);
-        }        
+        //Write file.
+        $content = '<?php'."\n";
+        $content = $content.'$db_host = "'.$_POST['db_host'].'";'."\n";
+        $content = $content.'$db_name = "'.$_POST['db_name'].'";'."\n";
+        $content = $content.'$db_user = "'.$_POST['db_user'].'";'."\n";
+        $content = $content.'$db_pass = "'.$_POST['db_pass'].'";'."\n";
+        $content = $content.'?>';
+        fwrite($datei, $content);
+        fclose($datei);
     }
 ?>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Installer</title>
+        <title>Install</title>
     </head>
     <body>
-        <h1>Installer</h1>
-        <p>Bitte gib im folgenden Formular deine Datenbankdaten an und klicke anschlie&szlig;end auf "Weiter".</p>
-        <form action="install.php" method="post">
-            <p>Datenbank Adresse</p>
-            <input type="text" placeholder="localhost" name="db_host"><br>
-            <p>Datenbank Name</p>
-            <input type="text" placeholder="my_db" name="db_name"><br>
-            <p>Datenbank Benutzername</p>
-            <input type="text" placeholder="gayLord1998" name="db_user"><br>
-            <p>Datenbank Password</p>
-            <input type="password" placeholder="Test00" name="db_pass"><br>
+        <h1>Install</h1>
+        <p>Fill out the fields and press continue:</p>
+        <form action="" method="post">
+            <p>Database Host</p>
+            <input type="text" placeholder="Database Host" name="db_host"><br>
+            <p>Database Name</p>
+            <input type="text" placeholder="Database Name" name="db_name"><br>
+            <p>Database Username</p>
+            <input type="text" placeholder="Username" name="db_user"><br>
+            <p>Database Password</p>
+            <input type="password" placeholder="Password" name="db_pass"><br>
             <br>
-            <input type="submit" value="Weiter" name="weiter"/>
+            <input type="submit" value="Continue" name="continue"/>
         </form>
     </body>
 </html>
