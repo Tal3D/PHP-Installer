@@ -5,10 +5,10 @@
             
         //Write file.
         $content = '<?php'."\n";
-        $content = $content.'$db_host = "'.$_POST['db_host'].'";'."\n";
-        $content = $content.'$db_name = "'.$_POST['db_name'].'";'."\n";
-        $content = $content.'$db_user = "'.$_POST['db_user'].'";'."\n";
-        $content = $content.'$db_pass = "'.$_POST['db_pass'].'";'."\n";
+        $content = $content.'  $db_host = "'.$_POST['db_host'].'";'."\n";
+        $content = $content.'  $db_name = "'.$_POST['db_name'].'";'."\n";
+        $content = $content.'  $db_user = "'.$_POST['db_user'].'";'."\n";
+        $content = $content.'  $db_pass = "'.$_POST['db_pass'].'";'."\n";
         $content = $content.'?>';
         fwrite($datei, $content);
         fclose($datei);
